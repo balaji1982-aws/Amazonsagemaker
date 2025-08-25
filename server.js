@@ -31,8 +31,9 @@ app.get("/api/sheet", async (req, res) => {
 
     res.json(response.data.values || []);
   } catch (error) {
-    console.error(error);
-    res.status(500).send("Error fetching sheet");
+   console.error("❌ Google Sheets API error:", error.response?.data || error.message);
+res.status(500).send("Error fetching sheet: " + (error.message || "unknown error"));
+
   }
 });
 
@@ -44,6 +45,7 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
   console.log(`✅ Server running on http://localhost:${PORT}`);
 });
+
 
 
 
