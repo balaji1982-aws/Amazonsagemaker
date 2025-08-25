@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Alumni Special Talks (Aug–Dec'25)</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --card: #121831;
+      --muted: #9fb0d0;
+      --text: #e7ecf7;
+      --accent: #4cc9f0;
+      --accent-2: #b5179e;
+      --grid: rgba(255,255,255,0.08);
+      --yellow: #fff3bf;
+    }
+
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1200px 800px at 10% 0%, #101735 0%, var(--bg) 45%) no-repeat;
+      color: var(--text);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 24px auto;
+      padding: 20px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.08);
+    }
+
+    h1 { font-size: 1.6rem; margin: 0 0 4px; letter-spacing: 0.3px; }
+    .sub { color: var(--muted); font-size: 0.95rem; margin-bottom: 16px; }
+
+    .toolbar {
+      display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+      margin: 14px 0 18px;
+    }
+    button, .btn {
+      appearance: none;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: linear-gradient(180deg, rgba(255,255,255,0.09), rgba(255,255,255,0.03));
+      color: var(--text);
+      padding: 10px 14px; border-radius: 14px; cursor: pointer;
+      font-weight: 600; letter-spacing: 0.2px; backdrop-filter: blur(6px);
+      box-shadow: 0 1px 0 rgba(255,255,255,0.15) inset, 0 6px 16px rgba(0,0,0,0.18);
+      transition: transform 0.05s ease, border-color 0.2s ease;
+    }
+    button:hover { transform: translateY(-1px); border-color: var(--accent); }
+
+    .table-wrap {
+      overflow: auto;
+      border-radius: 14px; border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.02);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+      max-height: 70vh;
+    }
+
+    table { border-collapse: separate; border-spacing: 0; width: max-content; min-width: 100%; font-size: 14px; }
+    thead th {
+      position: sticky; top: 0; z-index: 3;
+      background: rgba(18,24,49,0.96);
+      backdrop-filter: blur(4px);
+      color: var(--text);
+      font-weight: 700;
+      text-align: center;
+      padding: 12px 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.16);
+      white-space: nowrap;
+    }
+    tbody th {
+      position: sticky; left: 0; z-index: 2;
+      background: rgba(18,24,49,0.96);
+      text-align: left;
+      padding: 12px 12px;
+      border-right: 1px solid rgba(255,255,255,0.12);
+      font-weight: 700;
+    }
+
+    td { padding: 10px; min-width: 140px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    tbody tr:nth-child(odd) td { background: rgba(255,255,255,0.02); }
+    tbody tr:nth-child(even) td { background: rgba(255,255,255,0.04); }
+
+    td[contenteditable="false"], th[contenteditable="false"] {
+      outline: none;
+    }
+    td:focus, th:focus { box-shadow: 0 0 0 2px var(--accent) inset; border-radius: 6px; }
+
+    .hint {
+      background: var(--yellow);
+      color: #1f2937; /* slate-800 */
+      padding: 6px 8px; border-radius: 8px; font-weight: 600; display: inline-block;
+    }
+
+    .legend { margin-top: 10px; color: var(--muted); font-size: 0.9rem; }
+    .legend code { color: var(--text); background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 6px; }
+
+    .footer { color: var(--muted); font-size: 0.85rem; margin-top: 14px; text-align: right; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Alumni Special Talks</h1>
+    <div class="sub">Sessions from <strong>30-Aug</strong> to <strong>13-Dec</strong>. Click any cell to edit. Use Export to save as CSV.</div>
+
+    <div class="toolbar">
+      <button id="exportCsv">Export CSV</button>
+      <button id="printPage">Print</button>
+    </div>
+
+    <div class="table-wrap">
+      <table id="schedule">
+        <thead>
+          <tr>
+            <th class="sticky-col" scope="col">School Name</th>
+            <th scope="col">30-Aug</th>
+            <th scope="col">06-Sep</th>
+            <th scope="col">13-Sep</th>
+            <th scope="col">20-Sep</th>
+            <th scope="col">27-Sep</th>
+            <th scope="col">04-Oct</th>
+            <th scope="col">11-Oct</th>
+            <th scope="col">18-Oct</th>
+            <th scope="col">25-Oct</th>
+            <th scope="col">01-Nov</th>
+            <th scope="col">08-Nov</th>
+            <th scope="col">15-Nov</th>
+            <th scope="col">22-Nov</th>
+            <th scope="col">29-Nov</th>
+            <th scope="col">06-Dec</th>
+            <th scope="col">13-Dec</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row" contenteditable="false">D.A.V Boys Gopalapuram</th>
+            <td contenteditable="false"></td><td contenteditable="false"></td><td contenteditable="false"></td>
+            <td contenteditable="false"></td><td contenteditable="false"></td><td contenteditable="false"></td>
+            <td contenteditable="false"></td><td contenteditable="false"></td><td contenteditable="false"></td>
+            <td contenteditable="false"></td><td contenteditable="false"></td><td contenteditable="false"></td>
+            <td contenteditable="false"></td><td contenteditable="false"></td><td contenteditable="false"></td>
+            <td contenteditable="false"></td>
+          </tr>
+          <tr>
+            <th scope="row" contenteditable="false">D.A.V Girls Gopalapuram</th>
+            <td contenteditable="false"></td><td contenteditable="false"></td><td contenteditable="false"></td>
+            <td contenteditable="false"></td><td contenteditable="false"></td><td contenteditable="false"></td>
+            <td contenteditable="false"></td><td contenteditable="false"></td><td contenteditable="false"></td>
+            <td contenteditable="false"></td><td contenteditable="false"></td><td contenteditable="false"></td>
+            <td contenteditable="false"></td><td contenteditable="false"></td><td contenteditable="false"></td>
+            <td contenteditable="false"></td>
+          </tr>
+          <tr>
+            <th scope="row" contenteditable="false">D.A.V Boys Mogappair</th>
+            <td contenteditable="false"></td><td contenteditable="false"></td><td contenteditable="false"></td>
+            <td contenteditable="false"></td><td contenteditable="false"></td><td contenteditable="false"></td>
+            <td contenteditable="false"></td><td contenteditable="false"></td><td contenteditable="false"></td>
+            <td contenteditable="false"></td><td contenteditable="false"></td><td contenteditable="false"></td>
+            <td contenteditable="false"></td><td contenteditable="false"></td><td contenteditable="false"></td>
+            <td contenteditable="false"></td>
+          </tr>
+          <tr>
+            <th scope="row" contenteditable="false">D.A.V Girls Mogappair</th>
+            <!-- Placeholder note added in the first empty cell; move to the correct date if needed. -->
+            <td contenteditable="false" title="Move this note to the correct date cell if needed."><span class="hint">VI–VIII • Speaker: Camlin, Kokuyo</span></td>
+            <td contenteditable="false"></td><td contenteditable="false"></td>
+            <td contenteditable="false"></td><td contenteditable="false"></td><td contenteditable="false"></td>
+            <td contenteditable="false"></td><td contenteditable="false"></td><td contenteditable="false"></td>
+            <td contenteditable="false"></td><td contenteditable="false"></td><td contenteditable="false"></td>
+            <td contenteditable="false"></td><td contenteditable="false"></td><td contenteditable="false"></td>
+            <td contenteditable="false"></td>
+          </tr>
+          <tr>
+            <th scope="row" contenteditable="false">D.A.V Matriculation GillNagar</th>
+            <td contenteditable="false"></td><td contenteditable="false"></td><td contenteditable="false"></td>
+            <td contenteditable="false"></td><td contenteditable="false"></td><td contenteditable="false"></td>
+            <td contenteditable="false"></td><td contenteditable="false"></td><td contenteditable="false"></td>
+            <td contenteditable="false"></td><td contenteditable="false"></td><td contenteditable="false"></td>
+            <td contenteditable="false"></td><td contenteditable="false"></td><td contenteditable="false"></td>
+            <td contenteditable="false"></td>
+          </tr>
+          <tr>
+            <th scope="row" contenteditable="false">D.A.V School Pallikaranai</th>
+            <td contenteditable="false"></td><td contenteditable="false"></td><td contenteditable="false"></td>
+            <td contenteditable="false"></td><td contenteditable="false"></td><td contenteditable="false"></td>
+            <td contenteditable="false"></td><td contenteditable="false"></td><td contenteditable="false"></td>
+            <td contenteditable="false"></td><td contenteditable="false"></td><td contenteditable="false"></td>
+            <td contenteditable="false"></td><td contenteditable="false"></td><td contenteditable="false"></td>
+            <td contenteditable="false"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+     </div>
+
+  <script>
+     // Export CSV (UTF-8 w/ BOM for Excel)
+    document.getElementById('exportCsv').addEventListener('click', () => {
+      const rows = [];
+      const header = [...table.tHead.rows[0].cells].map(c => sanitize(c.innerText));
+      rows.push(header);
+      for (const tr of table.tBodies[0].rows) {
+        const row = [...tr.cells].map(c => sanitize(c.innerText));
+        rows.push(row);
+      }
+      const csv = '\uFEFF' + rows.map(r => r.map(csvEscape).join(',')).join('\n');
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'school_schedule.csv'; a.click();
+      URL.revokeObjectURL(url);
+    });
+
+    // Print
+    document.getElementById('printPage').addEventListener('click', () => window.print());
+
+    // Helpers
+    function csvEscape(v) {
+      if (v == null) return '';
+      const s = String(v).replace(/\r?\n|\r/g, ' ').trim();
+      if (s.includes('"') || s.includes(',') || s.includes('\n')) {
+        return '"' + s.replace(/"/g, '""') + '"';
+      }
+      return s;
+    }
+    function sanitize(s) {
+      return s.replace(/\s+/g, ' ').trim();
+    }
+	
+
+  </script>
+  
+  	<title>Alumni Volunteers </title>
+	  <style>
+    :root {
+      --bg: #0b1020;
+      --card: #121831;
+      --muted: #9fb0d0;
+      --text: #e7ecf7;
+      --accent: #4cc9f0;
+      --accent-2: #b5179e;
+      --grid: rgba(255,255,255,0.08);
+      --yellow: #fff3bf;
+    }
+</body>
+</html>
