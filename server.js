@@ -38,10 +38,11 @@ app.get("/api/sheet", async (req, res) => {
 
 // 4. Serve index.html
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
+  res.sendFile(path.join(__dirname, "public", "Alumnitalks.html"));
 });
 
 app.listen(PORT, () => {
   console.log(`✅ Server running on http://localhost:${PORT}`);
 });
+
 
