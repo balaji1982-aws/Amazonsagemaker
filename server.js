@@ -7,11 +7,11 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // 1. Serve static files
-//app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(__dirname));
 
 // 2. Google Sheets auth
 const auth = new google.auth.GoogleAuth({
-  keyFile: path.join(__dirname, "projectk.json"), // <- put JSON key here
+  keyFile: "projectk.json", // <- put JSON key here
   scopes: ["https://www.googleapis.com/auth/spreadsheets.readonly"],
 });
 
@@ -44,6 +44,7 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
   console.log(`✅ Server running on http://localhost:${PORT}`);
 });
+
 
 
 
