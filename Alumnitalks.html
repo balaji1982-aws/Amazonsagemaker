@@ -239,62 +239,66 @@
 </body>
 
 	<h2>Alumni Volunteering for School Initiatives</h2>
-<table id="googleTable" class="schedule-table">
+<table border="1" id="sheetTable">
   <thead>
-    <tr id="googleHeader"></tr>
+    <tr>
+      <th>Name</th>
+      <th>City</th>
+      <th>Field of Work</th>
+      <th>Willing to Support in</th>
+      </tr>
   </thead>
   <tbody id="googleBody"></tbody>
 </table>
 
 <script>
-async function loadGoogleData() {
-  const res = await fetch("/api/sheet");
-  const rows = await res.json();
+  async function loadSheet() {
+    try {
+      const res = await fetch("/api/sheet");
+      const data = await res.json();
 
-  if (rows.length > 0) {
-    const headerRow = document.getElementById("headerRow");
-    const body = document.getElementById("googleBody");
+      if (!data || data.length === 0) {
+        document.getElementById("googleBody").innerHTML =
+          "<tr><td colspan='5'>No data found</td></tr>";
+        return;
+      }
 
-      headerRow.innerHTML = "";
-      body.innerHTML = "";
+      // First row = header from Google Sheets
+      const headers = data[0];
+      const rows = data.slice(1); // actual rows
 
-	   const selectedColumns = [
-        "Name",
-        "Please select the city",
-        "Select your field of work",
-        "Please select the activities in which you would be able to extend support"
-      ];
+      // Pick specific columns by index
+      const nameIdx = headers.indexOf("Name");
+      const cityIdx = headers.indexOf("Please select the city");
+      const fieldIdx = headers.indexOf("Select your field of work");
+      const activityIdx = headers.indexOf("Please select the activities in which you would be able to extend support");
+    
+      const tbody = document.getElementById("googleBody");
+      tbody.innerHTML = "";
 
-
-	  const headerIndexes = selectedColumns.map(col =>
-        data[0].indexOf(col)
-      );
-
-	  // Build table header
-      selectedColumns.forEach(col => {
-        const th = document.createElement("th");
-        th.textContent = col;
-        headerRow.appendChild(th);
-      });
-
- // Build table body using only those columns
-      data.slice(1).forEach(row => {
+      rows.forEach(row => {
         const tr = document.createElement("tr");
-        headerIndexes.forEach(i => {
+
+        [nameIdx, phoneIdx, emailIdx, batchIdx, cityIdx].forEach(idx => {
           const td = document.createElement("td");
-          td.textContent = row[i] || "";
+          td.textContent = row[idx] || "";
           tr.appendChild(td);
         });
-        body.appendChild(tr);
+
+        tbody.appendChild(tr);
       });
     } catch (err) {
-      console.error("Error loading sheet:", err);
+      console.error("❌ Error loading sheet:", err);
+      document.getElementById("googleBody").innerHTML =
+        "<tr><td colspan='5'>Error loading data</td></tr>";
     }
   }
 
-loadGoogleData();
+  loadSheet();
 </script>
+
 </html>
+
 
 
 
