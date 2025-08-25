@@ -248,7 +248,7 @@
 
 <script>
 async function loadGoogleData() {
-  const res = await fetch("/api/sheet-data");
+  const res = await fetch("/api/sheet");
   const rows = await res.json();
 
   if (rows.length > 0) {
@@ -295,6 +295,7 @@ async function loadGoogleData() {
 loadGoogleData();
 </script>
 </html>
+
 
 
 
