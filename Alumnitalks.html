@@ -264,7 +264,7 @@
       }
 
       // First row = header from Google Sheets
-      const headers = data[0];
+      const headers = data[0].map(h => h.trim());
       const rows = data.slice(1); // actual rows
 
       // Pick specific columns by index
@@ -298,6 +298,7 @@
 </script>
 
 </html>
+
 
 
 
