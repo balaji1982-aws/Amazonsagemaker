@@ -13,5 +13,8 @@ RUN npm install
 # Copy the rest of your app's source code
 COPY . .
 
+CMD ["node", "index.js"]
+
 # Start the app
 CMD ["npm", "start"]
+
