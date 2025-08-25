@@ -279,7 +279,7 @@
       rows.forEach(row => {
         const tr = document.createElement("tr");
 
-        [nameIdx, phoneIdx, emailIdx, batchIdx, cityIdx].forEach(idx => {
+        [nameIdx, cityIdx, fieldIdx, activityIdx].forEach(idx => {
           const td = document.createElement("td");
           td.textContent = row[idx] || "";
           tr.appendChild(td);
@@ -298,6 +298,7 @@
 </script>
 
 </html>
+
 
 
 
