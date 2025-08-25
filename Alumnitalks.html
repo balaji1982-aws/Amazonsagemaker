@@ -236,17 +236,38 @@
 
   </script>
   
-  	<title>Alumni Volunteers </title>
-	  <style>
-    :root {
-      --bg: #0b1020;
-      --card: #121831;
-      --muted: #9fb0d0;
-      --text: #e7ecf7;
-      --accent: #4cc9f0;
-      --accent-2: #b5179e;
-      --grid: rgba(255,255,255,0.08);
-      --yellow: #fff3bf;
-    }
 </body>
+
+	<h2>Google Sheet Data</h2>
+<table id="googleTable" class="schedule-table">
+  <thead>
+    <tr id="googleHeader"></tr>
+  </thead>
+  <tbody id="googleBody"></tbody>
+</table>
+
+<script>
+async function loadGoogleData() {
+  const res = await fetch("/api/sheet-data");
+  const rows = await res.json();
+
+  if (rows.length > 0) {
+    const headerRow = document.getElementById("googleHeader");
+    const body = document.getElementById("googleBody");
+
+    // First row as header
+    headerRow.innerHTML = rows[0].map(h => `<th>${h}</th>`).join("");
+
+    // Remaining rows
+    for (let i = 1; i < rows.length; i++) {
+      const tr = document.createElement("tr");
+      tr.innerHTML = rows[i].map(cell => `<td>${cell}</td>`).join("");
+      body.appendChild(tr);
+    }
+  }
+}
+
+loadGoogleData();
+</script>
 </html>
+
