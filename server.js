@@ -11,7 +11,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // 2. Google Sheets auth
 const auth = new google.auth.GoogleAuth({
-  keyFile: path.join(__dirname, "service-account.json"), // <- put JSON key here
+  keyFile: path.join(__dirname, "projectk.json"), // <- put JSON key here
   scopes: ["https://www.googleapis.com/auth/spreadsheets.readonly"],
 });
 
@@ -44,3 +44,4 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
   console.log(`✅ Server running on http://localhost:${PORT}`);
 });
+
