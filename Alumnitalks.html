@@ -252,7 +252,7 @@ async function loadGoogleData() {
   const rows = await res.json();
 
   if (rows.length > 0) {
-    const headerRow = document.getElementById("googleHeader");
+    const headerRow = document.getElementById("Name");
     const body = document.getElementById("googleBody");
 
     // First row as header
@@ -270,4 +270,5 @@ async function loadGoogleData() {
 loadGoogleData();
 </script>
 </html>
+
 
