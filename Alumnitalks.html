@@ -238,7 +238,7 @@
   
 </body>
 
-	<h2>Google Sheet Data</h2>
+	<h2>Alumni Volunteering for School Initiatives</h2>
 <table id="googleTable" class="schedule-table">
   <thead>
     <tr id="googleHeader"></tr>
@@ -252,23 +252,49 @@ async function loadGoogleData() {
   const rows = await res.json();
 
   if (rows.length > 0) {
-    const headerRow = document.getElementById("Name");
+    const headerRow = document.getElementById("headerRow");
     const body = document.getElementById("googleBody");
 
-    // First row as header
-    headerRow.innerHTML = rows[0].map(h => `<th>${h}</th>`).join("");
+      headerRow.innerHTML = "";
+      body.innerHTML = "";
 
-    // Remaining rows
-    for (let i = 1; i < rows.length; i++) {
-      const tr = document.createElement("tr");
-      tr.innerHTML = rows[i].map(cell => `<td>${cell}</td>`).join("");
-      body.appendChild(tr);
+	   const selectedColumns = [
+        "Name",
+        "Please select the city",
+        "Select your field of work",
+        "Please select the activities in which you would be able to extend support"
+      ];
+
+
+	  const headerIndexes = selectedColumns.map(col =>
+        data[0].indexOf(col)
+      );
+
+	  // Build table header
+      selectedColumns.forEach(col => {
+        const th = document.createElement("th");
+        th.textContent = col;
+        headerRow.appendChild(th);
+      });
+
+ // Build table body using only those columns
+      data.slice(1).forEach(row => {
+        const tr = document.createElement("tr");
+        headerIndexes.forEach(i => {
+          const td = document.createElement("td");
+          td.textContent = row[i] || "";
+          tr.appendChild(td);
+        });
+        body.appendChild(tr);
+      });
+    } catch (err) {
+      console.error("Error loading sheet:", err);
     }
   }
-}
 
 loadGoogleData();
 </script>
 </html>
+
 
 
